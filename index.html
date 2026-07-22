@@ -242,11 +242,36 @@
     width:90px; height:26px; background:rgba(120,120,120,.35);
     border:1px solid rgba(45,45,45,.25);
   }
-  .project-card h3{font-size:1.5rem; margin-bottom:6px; display:flex; align-items:center; gap:10px;}
+  .project-card h3{font-size:1.5rem; margin-bottom:6px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
   .project-card h3 a{color:var(--blue); font-size:1rem; text-decoration:none; border-bottom:2px dashed var(--blue);}
   .project-card ul{margin:14px 0 0; padding-left:22px;}
   .project-card li{margin-bottom:8px; font-size:1.05rem;}
   .project-card li::marker{content: "✎ "; color:var(--accent);}
+
+  /* category labels */
+  .project-tag{
+    display:inline-block; font-family:'Patrick Hand', cursive; font-size:0.85rem;
+    padding:2px 14px; border:2px solid var(--border);
+    border-radius: var(--wobblySm);
+    margin-bottom:12px; transform:rotate(-1.5deg);
+    box-shadow:2px 2px 0px 0px rgba(45,45,45,.25);
+  }
+  .project-tag.data{ background:#eaf1fb; color:var(--blue); border-color:var(--blue); }
+  .project-tag.ml{ background:var(--yellow); color:var(--fg); }
+  .project-tag.ai{ background:var(--accent); color:#fff; }
+
+  /* filter pills */
+  .filter-row{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:36px; }
+  .filter-pill{
+    font-family:'Patrick Hand', cursive; font-size:1.05rem;
+    background:#fff; color:var(--fg); border:2.5px solid var(--border);
+    padding:6px 18px; border-radius: var(--wobblySm);
+    cursor:pointer; box-shadow:3px 3px 0px 0px var(--border);
+    transition: transform .1s, box-shadow .1s, background-color .1s, color .1s;
+  }
+  .filter-pill:hover{ transform:translate(1px,1px); box-shadow:2px 2px 0px 0px var(--border); }
+  .filter-pill.active{ background:var(--fg); color:var(--bg); }
+  .project-card.hidden{ display:none; }
 
   /* ---------- EDUCATION / CERTS ---------- */
   .split-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; }
@@ -425,12 +450,19 @@
     <div class="section-head">
       <span class="section-tag">the sketchbook</span>
       <h2>Academic Projects</h2>
-      <p class="subtitle">Six end-to-end builds — from raw data to a dashboard someone could actually use.</p>
+      <p class="subtitle">Seven end-to-end builds — from raw data to a dashboard (or a RAG pipeline) someone could actually use.</p>
+    </div>
+    <div class="filter-row" role="group" aria-label="Filter projects by category">
+      <button type="button" class="filter-pill active" data-filter="all" onclick="filterProjects('all', this)">All</button>
+      <button type="button" class="filter-pill" data-filter="data" onclick="filterProjects('data', this)">Data Analytics</button>
+      <button type="button" class="filter-pill" data-filter="ml" onclick="filterProjects('ml', this)">Machine Learning</button>
+      <button type="button" class="filter-pill" data-filter="ai" onclick="filterProjects('ai', this)">AI</button>
     </div>
     <div class="projects-grid">
 
-      <div class="project-card">
+      <div class="project-card" data-category="ai">
         <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag ai">AI</span>
         <h3>Real-Time Stock Analysis <a href="https://github.com/4nant-5/Real-Time-Stock-Market/" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>A real-time market intelligence system combining live stock data (AAPL, TSLA, AMZN &amp; more) with news APIs, processing 1,000+ data points a day.</p>
         <ul>
@@ -440,8 +472,9 @@
         </ul>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="data">
         <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag data">Data Analytics</span>
         <h3>Customer Shopping Behaviour Dashboard <a href="https://github.com/4nant-5/Customer-trends-data-analysis-Dashboard" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>Mined 50,000+ transaction records to uncover purchasing trends and segmentation opportunities.</p>
         <ul>
@@ -451,8 +484,9 @@
         </ul>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="data">
         <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag data">Data Analytics</span>
         <h3>Instagram User Analytics Dashboard <a href="https://github.com/4nant-5/Instagram-Analysis-Report" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>End-to-end analysis of 120,000+ engagement records using SQL-driven data modeling.</p>
         <ul>
@@ -462,8 +496,9 @@
         </ul>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="data">
         <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag data">Data Analytics</span>
         <h3>Uber Rides Analysis Dashboard <a href="https://github.com/4nant-5/Uber-Analysis" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>Analyzed 100,000+ ride records to uncover demand patterns and peak booking hours.</p>
         <ul>
@@ -473,8 +508,9 @@
         </ul>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="ml">
         <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag ml">Machine Learning</span>
         <h3>Movie Recommender <a href="https://github.com/4nant-5/Movie-Recommender/" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>Content-based recommender using cosine similarity across 10,000+ movie records.</p>
         <ul>
@@ -484,14 +520,30 @@
         </ul>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="ml">
         <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag ml">Machine Learning</span>
         <h3>Spam SMS Classifier <a href="https://github.com/4nant-5/Spam-SMS-Checker" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>ML-based spam detector tuned on 5,000+ labeled messages, reaching 96% accuracy.</p>
         <ul>
           <li>TF-IDF + Naive Bayes / Logistic Regression cut false positives by 18%.</li>
           <li>Full NLP preprocessing pipeline: tokenization, stopword removal, stemming.</li>
           <li>Shipped with a Tkinter GUI for real-time, click-and-check classification.</li>
+        </ul>
+      </div>
+
+      <div class="project-card" data-category="ai">
+        <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag ai">AI</span>
+        <h3>Beacon — YouTube RAG Q&amp;A <a href="https://github.com/4nant-5/Beacon/" target="_blank" rel="noopener">GitHub ↗</a></h3>
+        <p>End-to-end Retrieval-Augmented Generation (RAG) system that turns any YouTube video into a conversational knowledge base, answering natural-language questions with citation-grounded responses from a locally hosted LLM.</p>
+        <ul>
+          <li>Engineered a hybrid retrieval pipeline combining dense vector search (ChromaDB) with lexical BM25 search (Whoosh) to maximize recall across semantic and keyword queries.</li>
+          <li>Generated dense embeddings with the Nomic Embed Text model and built a recursive transcript-chunking pipeline with duplicate-video detection.</li>
+          <li>Implemented cross-encoder reranking with the BGE reranker to reorder retrieved chunks by relevance before prompt construction.</li>
+          <li>Deployed local LLMs (Gemma / Qwen3:8B) via Ollama for response generation, eliminating dependency on external API calls.</li>
+          <li>Containerized the full application with Docker and Docker Compose for reproducible, one-command deployment.</li>
+          <li>Built a Streamlit interface for real-time transcript extraction, indexing, and interactive Q&amp;A.</li>
         </ul>
       </div>
 
@@ -575,6 +627,15 @@
         showToast('Copied ' + value + ' to clipboard');
       }).catch(function(){ /* clipboard blocked, mailto/tel still attempted */ });
     }
+  }
+
+  function filterProjects(category, btn){
+    document.querySelectorAll('.filter-pill').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(function(card){
+      var show = category === 'all' || card.getAttribute('data-category') === category;
+      card.classList.toggle('hidden', !show);
+    });
   }
 </script>
 </body>
