@@ -463,6 +463,21 @@
       <div class="project-card" data-category="ai">
         <div class="tape" aria-hidden="true"></div>
         <span class="project-tag ai">AI</span>
+        <h3>Beacon — YouTube RAG Q&amp;A <a href="https://github.com/4nant-5/Beacon/" target="_blank" rel="noopener">GitHub ↗</a></h3>
+        <p>End-to-end Retrieval-Augmented Generation (RAG) system that turns any YouTube video into a conversational knowledge base, answering natural-language questions with citation-grounded responses from a locally hosted LLM.</p>
+        <ul>
+          <li>Engineered a hybrid retrieval pipeline combining dense vector search (ChromaDB) with lexical BM25 search (Whoosh) to maximize recall across semantic and keyword queries.</li>
+          <li>Generated dense embeddings with the Nomic Embed Text model and built a recursive transcript-chunking pipeline with duplicate-video detection.</li>
+          <li>Implemented cross-encoder reranking with the BGE reranker to reorder retrieved chunks by relevance before prompt construction.</li>
+          <li>Deployed local LLMs (Gemma / Qwen3:8B) via Ollama for response generation, eliminating dependency on external API calls.</li>
+          <li>Containerized the full application with Docker and Docker Compose for reproducible, one-command deployment.</li>
+          <li>Built a Streamlit interface for real-time transcript extraction, indexing, and interactive Q&amp;A.</li>
+        </ul>
+      </div>
+
+      <div class="project-card" data-category="ai">
+        <div class="tape" aria-hidden="true"></div>
+        <span class="project-tag ai">AI</span>
         <h3>Real-Time Stock Analysis <a href="https://github.com/4nant-5/Real-Time-Stock-Market/" target="_blank" rel="noopener">GitHub ↗</a></h3>
         <p>A real-time market intelligence system combining live stock data (AAPL, TSLA, AMZN &amp; more) with news APIs, processing 1,000+ data points a day.</p>
         <ul>
@@ -532,20 +547,6 @@
         </ul>
       </div>
 
-      <div class="project-card" data-category="ai">
-        <div class="tape" aria-hidden="true"></div>
-        <span class="project-tag ai">AI</span>
-        <h3>Beacon — YouTube RAG Q&amp;A <a href="https://github.com/4nant-5/Beacon/" target="_blank" rel="noopener">GitHub ↗</a></h3>
-        <p>End-to-end Retrieval-Augmented Generation (RAG) system that turns any YouTube video into a conversational knowledge base, answering natural-language questions with citation-grounded responses from a locally hosted LLM.</p>
-        <ul>
-          <li>Engineered a hybrid retrieval pipeline combining dense vector search (ChromaDB) with lexical BM25 search (Whoosh) to maximize recall across semantic and keyword queries.</li>
-          <li>Generated dense embeddings with the Nomic Embed Text model and built a recursive transcript-chunking pipeline with duplicate-video detection.</li>
-          <li>Implemented cross-encoder reranking with the BGE reranker to reorder retrieved chunks by relevance before prompt construction.</li>
-          <li>Deployed local LLMs (Gemma / Qwen3:8B) via Ollama for response generation, eliminating dependency on external API calls.</li>
-          <li>Containerized the full application with Docker and Docker Compose for reproducible, one-command deployment.</li>
-          <li>Built a Streamlit interface for real-time transcript extraction, indexing, and interactive Q&amp;A.</li>
-        </ul>
-      </div>
 
     </div>
   </div>
